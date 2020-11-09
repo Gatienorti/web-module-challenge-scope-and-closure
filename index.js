@@ -61,10 +61,8 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  return Math.floor(Math.random()*3);
 }
 
 /* Task 3: finalScore()
@@ -80,10 +78,17 @@ For example: invoking finalScore(inning, 9) might return this object:
 }
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(callback,num){
+let home = 0;
+let away = 0;
+for (let i = 0; i < num; i++){
+  home += callback();
+  away += callback();
+  }
+  return{
+    Home: home,
+    Away: away
+  };
 }
 
 /* Task 4: 
@@ -91,8 +96,11 @@ function finalScore(/*code Here*/){
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(callBack) {
+  return{
+    Home: callBack(),
+    Away: callBack()
+  };
 }
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
@@ -138,9 +146,27 @@ Use the scoreboard function below to do the following:
   */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callBack,num) {
+  let array = [];
+  let a = 0;
+  let b = 0;
+  for(let i = 0; i<num ; i++){
+    a += callBack.Away;
+    b += callBack.Home;
+    array.push(`Inning ${i}: Away ${a} - Home ${b}`)
+  } 
+  if(a === b){
+      array.push(`This game will require extra innings: Away ${a} - Home ${b}, `)
+    }
+    else{
+      array.push(`Final Score: Away ${a} - Home ${b}, `)
+    } 
+  console.log(array)
 }
+
+
+  
+
 
 
 
